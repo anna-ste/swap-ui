@@ -1,0 +1,484 @@
+{
+	"info": {
+		"_postman_id": "4db2e0b4-11b5-4f72-a20b-e7e719068ddf",
+		"name": "cats_API_tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25809460"
+	},
+	"item": [
+		{
+			"name": "Test getting number of cats per page Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const cats_per_page = parseInt(pm.environment.get(\"BREEDS_LIMIT\"));",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"pm.test(\"Content-Type is JSON\", function () {",
+							"    pm.response.to.be.json;",
+							"})",
+							"pm.test(\"Number of cats per page as requested\", () => {",
+							"    pm.expect(pm.response.json().data.length).to.equal(cats_per_page)",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_API}}/breeds?limit={{BREEDS_LIMIT}}",
+					"host": [
+						"{{BASE_API}}"
+					],
+					"path": [
+						"breeds"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "{{BREEDS_LIMIT}}"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Test getting number of cats per page Copy",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_API}}/breeds?limit={{BREEDS_LIMIT}}",
+							"host": [
+								"{{BASE_API}}"
+							],
+							"path": [
+								"breeds"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "{{BREEDS_LIMIT}}"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 12 Feb 2023 22:00:09 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "X-Ratelimit-Limit",
+							"value": "100"
+						},
+						{
+							"key": "X-Ratelimit-Remaining",
+							"value": "99"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "XSRF-TOKEN=eyJpdiI6IklibGdRQWJJQzZrUTA3cTJsbFdnZUE9PSIsInZhbHVlIjoibHZUZmFBeGY3Umh1Q3c0SThEMmw0bFdRc0hzTTFKdFpKaGFLKyt1WDZRam83U1VBVUJVU2dEa1RNOTVNYS9tL3BiNzlhQkFqRmdEcUl1YkNlQmJldXJDTDhuNUNtcGdDWjNhMTZIV1VmQ1IrQTA0T0UxOGdrNTNmNENNSXpzTk4iLCJtYWMiOiJiM2UyZTAzYzg4N2NhNGE4NzFjN2Y3MTE0MDI1MTExMjBkODU4NzljNThiNjNiNDNjZTNlMWQxOWExMzBmN2IwIiwidGFnIjoiIn0%3D; expires=Mon, 13-Feb-2023 00:00:09 GMT; path=/; samesite=lax"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "catfacts_session=eyJpdiI6Ikc0eFNObmo1ZzFIVGRQWk1ydzRFR0E9PSIsInZhbHVlIjoidUdZTTJCek0wYW9qay9hSGNPb3lJVTdFVVlhN3NvNjR3SmkybmtqaXFZNDdCTU8yanR6WFZ2ZGVkSFloTkJ0aDkwWUVMRFRDdCtTNnI3dWt5cVZralJLdHNVVTNYdnlmYlJCZXhkdlFHcmw0ejJPeDB3R0g1U0RoQUd6WSsyQ04iLCJtYWMiOiJjNGNkMjRlY2IwMTkyODE4NDE5NTYyYjczODQzYTllZjNlNjU4NTZjMGMwOWEzMjc0ZmJmMzNmZGI2NjVkMjI0IiwidGFnIjoiIn0%3D; expires=Mon, 13-Feb-2023 00:00:09 GMT; path=/; httponly; samesite=lax"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"current_page\": 1,\n    \"data\": [\n        {\n            \"breed\": \"Abyssinian\",\n            \"country\": \"Ethiopia\",\n            \"origin\": \"Natural/Standard\",\n            \"coat\": \"Short\",\n            \"pattern\": \"Ticked\"\n        }\n    ],\n    \"first_page_url\": \"https://catfact.ninja/breeds?page=1\",\n    \"from\": 1,\n    \"last_page\": 98,\n    \"last_page_url\": \"https://catfact.ninja/breeds?page=98\",\n    \"links\": [\n        {\n            \"url\": null,\n            \"label\": \"Previous\",\n            \"active\": false\n        },\n        {\n            \"url\": \"https://catfact.ninja/breeds?page=1\",\n            \"label\": \"1\",\n            \"active\": true\n        },\n        {\n            \"url\": \"https://catfact.ninja/breeds?page=2\",\n            \"label\": \"2\",\n            \"active\": false\n        },\n        {\n            \"url\": \"https://catfact.ninja/breeds?page=3\",\n            \"label\": \"3\",\n            \"active\": false\n        },\n        {\n            \"url\": \"https://catfact.ninja/breeds?page=4\",\n            \"label\": \"4\",\n            \"active\": false\n        },\n        {\n            \"url\": \"https://catfact.ninja/breeds?page=5\",\n            \"label\": \"5\",\n            \"active\": false\n        },\n        {\n            \"url\": \"https://catfact.ninja/breeds?page=6\",\n            \"label\": \"6\",\n            \"active\": false\n        },\n        {\n            \"url\": \"https://catfact.ninja/breeds?page=7\",\n            \"label\": \"7\",\n            \"active\": false\n        },\n        {\n            \"url\": \"https://catfact.ninja/breeds?page=8\",\n            \"label\": \"8\",\n            \"active\": false\n        },\n        {\n            \"url\": \"https://catfact.ninja/breeds?page=9\",\n            \"label\": \"9\",\n            \"active\": false\n        },\n        {\n            \"url\": \"https://catfact.ninja/breeds?page=10\",\n            \"label\": \"10\",\n            \"active\": false\n        },\n        {\n            \"url\": null,\n            \"label\": \"...\",\n            \"active\": false\n        },\n        {\n            \"url\": \"https://catfact.ninja/breeds?page=97\",\n            \"label\": \"97\",\n            \"active\": false\n        },\n        {\n            \"url\": \"https://catfact.ninja/breeds?page=98\",\n            \"label\": \"98\",\n            \"active\": false\n        },\n        {\n            \"url\": \"https://catfact.ninja/breeds?page=2\",\n            \"label\": \"Next\",\n            \"active\": false\n        }\n    ],\n    \"next_page_url\": \"https://catfact.ninja/breeds?page=2\",\n    \"path\": \"https://catfact.ninja/breeds\",\n    \"per_page\": \"1\",\n    \"prev_page_url\": null,\n    \"to\": 1,\n    \"total\": 98\n}"
+				}
+			]
+		},
+		{
+			"name": "Test getting random fact",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const schema = {",
+							"  \"$schema\": \"http://json-schema.org/draft-07/schema#\",",
+							"  \"title\": \"Generated schema for Root\",",
+							"  \"type\": \"object\",",
+							"  \"properties\": {",
+							"    \"fact\": {",
+							"      \"type\": \"string\"",
+							"    },",
+							"    \"length\": {",
+							"      \"type\": \"number\"",
+							"    }",
+							"  },",
+							"  \"required\": [",
+							"    \"fact\",",
+							"    \"length\"",
+							"  ]",
+							"}",
+							"",
+							"const max_fact_length = parseInt(pm.environment.get(\"FACT_MAX_FACT_LENGHT\"))",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"pm.test(\"Content-Type is JSON\", function () {",
+							"    pm.response.to.be.json;",
+							"})",
+							"pm.test(\"Response corresponds to json schema\", function () {",
+							"    pm.response.to.have.jsonSchema(schema);",
+							"})",
+							"",
+							"pm.test(\"Length of returned fact not greated then requested\", () => {",
+							"    pm.expect(pm.response.json().fact.length).not.to.be.greaterThan(max_fact_length);",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_API}}/fact?max_length={{FACT_MAX_LENGTH}}",
+					"host": [
+						"{{BASE_API}}"
+					],
+					"path": [
+						"fact"
+					],
+					"query": [
+						{
+							"key": "max_length",
+							"value": "{{FACT_MAX_LENGTH}}"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Test getting random fact",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_API}}/fact?max_length={{FACT_MAX_LENGTH}}",
+							"host": [
+								"{{BASE_API}}"
+							],
+							"path": [
+								"fact"
+							],
+							"query": [
+								{
+									"key": "max_length",
+									"value": "{{FACT_MAX_LENGTH}}"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 12 Feb 2023 21:28:01 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "X-Ratelimit-Limit",
+							"value": "100"
+						},
+						{
+							"key": "X-Ratelimit-Remaining",
+							"value": "97"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "XSRF-TOKEN=eyJpdiI6IjBQTms5bXc2YXpzQ2MzYTF3Y3pYc2c9PSIsInZhbHVlIjoiOU9GdGQxd0hVYWZGdFpUbmxWTno3STJyVFR0RmRtdDNoSWw0QWluYXlucVVEa2lPbnFxYTU5VnN0bjFxbFpMOXJWNVpkWnRVNlVyeW5hQmV6MVJ6cC9MVmpMak5qaHpXYys2TVBDR2xLVDg3eEw5WjNjNWZYWWQrY21uUGV1TE8iLCJtYWMiOiJjODQzYTA5Mzg1ZTcyM2Y5OTYyMmYxMmUwZjcyMzE5N2Q3NDFiMmExMTE2ZmI1NjJhZDFmMjRhNzBhNzYzNTczIiwidGFnIjoiIn0%3D; expires=Sun, 12-Feb-2023 23:28:01 GMT; path=/; samesite=lax"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "catfacts_session=eyJpdiI6IjVtWW1INDBoekJYdWVDSjNoa1cyYWc9PSIsInZhbHVlIjoicjEzSE11bFlteDA0aVNJeGYyUCs3bE5ZSlFiV0dIbTYzc1NTUmFzdWZXczBtSWFFWlhyMUZGaGZ3TmxzM2JpZDhPb3JtdjhsMHRVVHJlcWJXdXU5VVFFMmZoR1Mza2Y1Vk44STZ5cC9kTUdjYmJHSDFDV20zNmt1aitndXc0bkQiLCJtYWMiOiIyZThmMzRlNjA4OWNjOWNlMGQyMGZhNTg2ZWY4NDdiNjYxNTk2ZjExMzBkZjNjYTkyNzg4YjU0ZmZhNWQwOTZlIiwidGFnIjoiIn0%3D; expires=Sun, 12-Feb-2023 23:28:01 GMT; path=/; httponly; samesite=lax"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"fact\": \"Cat paws act as tempetature regulators, shock absorbers, hunting and grooming tools, sensors, and more\",\n    \"length\": 102\n}"
+				}
+			]
+		},
+		{
+			"name": "Test getting number of facts per page",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const facts_max_length = parseInt(pm.environment.get(\"FACTS_MAX_LENGTH\"));",
+							"const facts_limit = parseInt(pm.environment.get(\"FACTS_LIMIT\"));",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"pm.test(\"Content-Type is JSON\", function () {",
+							"    pm.response.to.be.json;",
+							"})",
+							"",
+							"pm.test(\"Length of returned fact not greated then requested\", () => {",
+							"    pm.expect(pm.response.json().data[0].fact.length).not.to.be.greaterThan(facts_max_length);",
+							"})",
+							"",
+							"",
+							"pm.test(\"Length parameter value not greater then requested\", () => {",
+							"    pm.expect(pm.response.json().data[0].length).not.to.be.greaterThan(facts_max_length);",
+							"})",
+							"",
+							"pm.test(\"Length of returned fact not greated then requested\", () => {",
+							"    pm.expect(pm.response.json().data[0].fact.length).equals(pm.response.json().data[0].length);",
+							"})",
+							"",
+							"pm.test(\"Length not greated then requested\", () => {",
+							"    pm.expect(pm.response.json().data.length).equals(facts_limit);",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_API}}/facts?limit={{FACTS_LIMIT}}&max_length={{FACTS_MAX_LENGTH}}",
+					"host": [
+						"{{BASE_API}}"
+					],
+					"path": [
+						"facts"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "{{FACTS_LIMIT}}"
+						},
+						{
+							"key": "max_length",
+							"value": "{{FACTS_MAX_LENGTH}}"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Test getting number of facts per page",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_API}}/facts?limit={{FACTS_LIMIT}}&max_length={{FACTS_MAX_LENGTH}}",
+							"host": [
+								"{{BASE_API}}"
+							],
+							"path": [
+								"facts"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "{{FACTS_LIMIT}}"
+								},
+								{
+									"key": "max_length",
+									"value": "{{FACTS_MAX_LENGTH}}"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 12 Feb 2023 21:33:42 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "X-Ratelimit-Limit",
+							"value": "100"
+						},
+						{
+							"key": "X-Ratelimit-Remaining",
+							"value": "98"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "XSRF-TOKEN=eyJpdiI6IjgrZXlyQ0VOLzJ1MFRraWVWcEgrakE9PSIsInZhbHVlIjoiQURPWlExb25kYVpSdWZwUVRtUWw4Z3FwTTl2R2M0blQrMCtiR2wwejJQNVhxSG1pWkR5SmlxNVBHYXhWWFhjdWZnL3NIOEVTdWpxamtoQklUQ2N0ZUpFeUs4bUp3SlZyQ2NLUFhrTjF0STdsR2dBNU5aUmVNZUVqU0JDd1J3MHkiLCJtYWMiOiIyNDFkNTdlZjlhNDZlYTIyNmZhY2RiNTcwYzcwMTk1MTI3Zjc5ZmFkZjE4M2ZlZDJmYzY2NzI5NDJiOTc1YmE5IiwidGFnIjoiIn0%3D; expires=Sun, 12-Feb-2023 23:33:42 GMT; path=/; samesite=lax"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "catfacts_session=eyJpdiI6Iks1SnlXZGk4ZXg5Qi9hcTVjelhtNGc9PSIsInZhbHVlIjoiT25qMUF3Ykd0aXlMQTRQVTFIVlEyK0psaGErTWdwR0FtY09PQVdnSllnbU4xTktURFdWQm5nWGVjZlppZ21pRjVOZ2dCck9lcTN6aGZJZlZ5MzdYNkNVS0Z1UUVQMG1TQWRVaW1ScEg0cGpVTGxDQTB4ZW9CUTI0Y3FUZUNWQS8iLCJtYWMiOiI2ZDQ3YmJhYWFmM2UyOTZiYzdkZDQ1YjllOTYxMDc2Y2Y4ZTMxNTJlMWRkMDZlYTRiYzdiYmJlMjFmMzQ2MDhlIiwidGFnIjoiIn0%3D; expires=Sun, 12-Feb-2023 23:33:42 GMT; path=/; httponly; samesite=lax"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"current_page\": 1,\n    \"data\": [\n        {\n            \"fact\": \"Cats have 3 eyelids.\",\n            \"length\": 20\n        }\n    ],\n    \"first_page_url\": \"https://catfact.ninja/facts?page=1\",\n    \"from\": 1,\n    \"last_page\": 241,\n    \"last_page_url\": \"https://catfact.ninja/facts?page=241\",\n    \"links\": [\n        {\n            \"url\": null,\n            \"label\": \"Previous\",\n            \"active\": false\n        },\n        {\n            \"url\": \"https://catfact.ninja/facts?page=1\",\n            \"label\": \"1\",\n            \"active\": true\n        },\n        {\n            \"url\": \"https://catfact.ninja/facts?page=2\",\n            \"label\": \"2\",\n            \"active\": false\n        },\n        {\n            \"url\": \"https://catfact.ninja/facts?page=3\",\n            \"label\": \"3\",\n            \"active\": false\n        },\n        {\n            \"url\": \"https://catfact.ninja/facts?page=4\",\n            \"label\": \"4\",\n            \"active\": false\n        },\n        {\n            \"url\": \"https://catfact.ninja/facts?page=5\",\n            \"label\": \"5\",\n            \"active\": false\n        },\n        {\n            \"url\": \"https://catfact.ninja/facts?page=6\",\n            \"label\": \"6\",\n            \"active\": false\n        },\n        {\n            \"url\": \"https://catfact.ninja/facts?page=7\",\n            \"label\": \"7\",\n            \"active\": false\n        },\n        {\n            \"url\": \"https://catfact.ninja/facts?page=8\",\n            \"label\": \"8\",\n            \"active\": false\n        },\n        {\n            \"url\": \"https://catfact.ninja/facts?page=9\",\n            \"label\": \"9\",\n            \"active\": false\n        },\n        {\n            \"url\": \"https://catfact.ninja/facts?page=10\",\n            \"label\": \"10\",\n            \"active\": false\n        },\n        {\n            \"url\": null,\n            \"label\": \"...\",\n            \"active\": false\n        },\n        {\n            \"url\": \"https://catfact.ninja/facts?page=240\",\n            \"label\": \"240\",\n            \"active\": false\n        },\n        {\n            \"url\": \"https://catfact.ninja/facts?page=241\",\n            \"label\": \"241\",\n            \"active\": false\n        },\n        {\n            \"url\": \"https://catfact.ninja/facts?page=2\",\n            \"label\": \"Next\",\n            \"active\": false\n        }\n    ],\n    \"next_page_url\": \"https://catfact.ninja/facts?page=2\",\n    \"path\": \"https://catfact.ninja/facts\",\n    \"per_page\": \"1\",\n    \"prev_page_url\": null,\n    \"to\": 1,\n    \"total\": 241\n}"
+				}
+			]
+		}
+	]
+}
