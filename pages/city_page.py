@@ -11,6 +11,7 @@ class CityPage:
         self.bikes = page.locator("//li[@data-test-id='city-product-list-item']")
         self.subscribe_power_one_button = page.locator(
             "//a[@data-test-id='product-cta-link' and contains(@href, 'power-1')]")
+        self.apps_stores_link_section = page.locator("//div[contains(@class,'AppStoreLinks')]")
 
     def subscribe_for_bike(self):
         with self.page.expect_navigation():

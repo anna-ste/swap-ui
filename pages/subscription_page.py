@@ -11,6 +11,7 @@ class SubscriptionPage:
         self.membership_selector_group = page.locator("//div[@aria-label='Choose your membership']")
         self.bike_usage_selector_group = page.locator("//div[@data-test-id='heavy-use-radio-group']")
         self.no_heavy_usage_option = page.locator("//span[text()='No']/ancestor::label[@data-test-id='radio-button']")
+        self.loyal_membership_option = page.locator("//span[text()='Loyal membership']/ancestor::label[@data-test-id='radio-button']")
 
     def order_bike(self):
         self.no_heavy_usage_option.click()
