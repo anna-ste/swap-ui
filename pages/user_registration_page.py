@@ -22,20 +22,20 @@ class UserRegistrationPage():
         self.back_button = page.locator("div.back-button")
         self.next_button = page.locator("//button[contains(@data-met, 'Personal details')]")
 
-    def fill_registration_form(self):
-        self.day.select_option("1")
-        self.month.select_option("February")
-        self.year.select_option("2000")
-        self.firstname.fill('Anna')
-        self.lastname.fill('Filippova')
+    def fill_registration_form(self, user):
+        self.day.select_option(user["day"])
+        self.month.select_option(user["month"])
+        self.year.select_option(user["year"])
+        self.firstname.fill(user["firstname"])
+        self.lastname.fill(user["lastname"])
         self.female_gender.check()
-        self.post_code.fill('W1U 8ED')
-        self.height.fill('174')
-        self.street.fill('Herengracht')
-        self.house.fill('71')
-        self.city.fill('London')
-        self.email.fill('bla@test.me')
-        self.phone.fill('123')
+        self.post_code.fill(user["post_code"])
+        self.height.fill(user["height"])
+        self.street.fill(user["street"])
+        self.house.fill(user["house"])
+        self.city.fill(user["city"])
+        self.email.fill(user["email"])
+        self.phone.fill(user["phone"])
         self.terms_checkbox.check()
 
     def go_back(self):

@@ -8,7 +8,7 @@ PRICE = '£64.90'
 CITY = 'London'
 
 
-def test_select_city_order_bike_go_back(page):
+def test_select_city_order_bike_go_back(page, user):
     # go to start page
     page.goto('https://swapfiets.com/en-GB')
     home_page = HomePage(page)
@@ -37,7 +37,7 @@ def test_select_city_order_bike_go_back(page):
     registration_page = subscription_page.order_bike()
 
     # fill personal details
-    registration_page.fill_registration_form()
+    registration_page.fill_registration_form(user)
 
     # check form is filled and next registration step is available
     expect(registration_page.next_button).to_be_enabled()
