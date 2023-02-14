@@ -1,3 +1,5 @@
+import json
+
 import pytest
 from playwright.sync_api import sync_playwright
 
@@ -21,3 +23,10 @@ def page():
         page = context.new_page()
         yield page
         context.close()
+
+
+@pytest.fixture
+def user():
+    with open('data/user.json', 'r') as file:
+        user = json.load(file)
+    return user
