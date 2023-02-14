@@ -2,6 +2,7 @@ from pages.subscription_page import SubscriptionPage
 
 
 class CityPage:
+    TITLE = 'Our bikes in London'
 
     def __init__(self, page):
         self.page = page
