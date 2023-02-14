@@ -1,5 +1,3 @@
-import re
-
 from playwright.sync_api import expect
 
 from pages.home_page import HomePage
